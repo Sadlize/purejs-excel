@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development webpack-dev-server --open",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server",
     "build": "cross-env NODE_ENV=production webpack-dev-server --mode production"
   },
   "browserslist": [
@@ -21,12 +21,16 @@
   "homepage": "https://github.com/Sadlize/pureJS-practice#readme",
   "devDependencies": {
     "@babel/core": "^7.21.4",
+    "@babel/eslint-parser": "^7.21.3",
     "@babel/preset-env": "^7.21.4",
     "babel-loader": "^9.1.2",
     "clean-webpack-plugin": "^4.0.0",
     "copy-webpack-plugin": "^11.0.0",
     "cross-env": "^7.0.3",
     "css-loader": "^6.7.3",
+    "eslint": "^8.2.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-webpack-plugin": "^4.0.1",
     "html-webpack-plugin": "^5.5.1",
     "mini-css-extract-plugin": "^2.7.5",
     "sass": "^1.62.0",
