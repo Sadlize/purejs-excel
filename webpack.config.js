@@ -7,7 +7,8 @@ const ESLintPlugin = require('eslint-webpack-plugin');
 
 const isProd = process.env.NODE_ENV === 'production';
 
-const fileName = (ext) => (isProd ? `bundle.[fullhash].${ext}` : `bundle.${ext}`);
+const fileName = (ext) =>
+  isProd ? `bundle.[fullhash].${ext}` : `bundle.${ext}`;
 
 module.exports = {
   context: path.resolve(__dirname, 'src'),
@@ -28,6 +29,7 @@ module.exports = {
       'hooks/*': ['./src/hooks/*'],
       'utils/*': ['./src/utils/*'],
       'requests/*': ['./src/requests/*'],
+      'styles/*': ['./src/styles/*'],
       '@/*': ['./*'],
     },
   },
@@ -48,7 +50,10 @@ module.exports = {
     }),
     new CopyPlugin({
       patterns: [
-        { from: path.resolve(__dirname, 'src/favicon.ico'), to: path.resolve(__dirname, 'dist') },
+        {
+          from: path.resolve(__dirname, 'src/favicon.ico'),
+          to: path.resolve(__dirname, 'dist'),
+        },
       ],
     }),
     new MiniCssExtractPlugin({
@@ -59,11 +64,7 @@ module.exports = {
     rules: [
       {
         test: /\.s[ac]ss$/i,
-        use: [
-          MiniCssExtractPlugin.loader,
-          'css-loader',
-          'sass-loader',
-        ],
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
       },
     ],
   },

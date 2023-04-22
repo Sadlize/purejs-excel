@@ -1,7 +1,12 @@
 {
   "parser": "@babel/eslint-parser",
-  "extends": ["airbnb"],
+  "extends": ["airbnb", "prettier"],
+  "plugins": ["prettier"],
+  "env": {
+    "browser": true,
+    "node": true
+  },
   "rules": {
-//    "no-console": "off"
+    "prettier/prettier": "error"
   }
 }
