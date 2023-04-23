@@ -1,0 +1,174 @@
+@import "variables";
+@import "mixins";
+
+.header {
+  background: $color_lightBlue;
+
+  &__input {
+    font-family: 'Product Sans', sans-serif;
+    letter-spacing: 0.35px;
+    background: none;
+    max-width: 173px;
+    margin: 0;
+    padding: 2px 8px;
+    color: $color_black;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    height: 20px;
+    font-size: 18px;
+    line-height: 22px;
+    outline: none;
+
+    &:hover {
+      border: 1px solid $color_grey;
+    }
+
+    &:focus {
+      border: 2px solid $color_blue;
+      margin: -1px;
+      box-shadow: none;
+    }
+
+    &[id=fontSize-input] {
+      width: 32px;
+      padding: 0;
+      text-align: center;
+      font-size: 14px;
+    }
+  }
+
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 8px 0 8px;
+  }
+
+  &__brand-logo {
+    margin: 7px 0 4px 8px;
+
+    & > svg {
+      width: 36px;
+      height: 36px;
+    }
+  }
+
+  &__titleBar {
+    height: fit-content;
+    margin-right: auto;
+
+    &-buttons {
+      & > button {
+        @include button();
+        padding: 8px;
+        border-radius: 50%;
+        line-height: 0;
+      }
+
+      & > #meet-in-editors {
+        border-radius: 33px;
+      }
+    }
+  }
+
+  &__menuBar {
+    display: flex;
+    margin-top: 1px;
+    margin-left: 2px;
+
+    & > button {
+      @include button();
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 14px;
+      letter-spacing: .5px;
+      font-family: 'Product Sans', sans-serif;
+    }
+  }
+
+  &__toolbar {
+    background-color: #edf2fa;
+    border: none;
+    border-radius: 24px;
+    margin: 6px 16px 8px 16px;
+    min-height: 40px;
+    padding: 0 8px;
+    display: flex;
+    align-items: center;
+
+    & > button {
+      @include button();
+      padding: 0;
+      border-radius: 4px;
+      font-size: 14px;
+      min-width: 30px;
+      height: 30px;
+
+      & > svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+    &-separator {
+      border-left: 1px solid #c7c7c7;
+      margin: 10px 3px;
+      height: 20px;
+    }
+
+    & .color-menu-button-indicator > svg{
+      height: 16px;
+      border-bottom: 4px solid rgb(0, 0, 0);
+    }
+  }
+
+  &__formula {
+    display: flex;
+    align-items: center;
+    background-color: $color_white;
+    height: $formula_height;
+
+    &-waffle {
+      width: 60px;
+
+      &-input {
+        margin: 2px 0 2px 2px;
+        padding: 0 8px 0 6px;
+        border: 0;
+        outline: 0;
+      }
+    }
+
+    &-separator {
+      border-left: 1px solid #c7c7c7;
+      margin: $formula_height * 0.21 3px;
+      height: $formula_height * 0.58;
+    }
+
+    &-label {
+      align-items: center;
+      display: flex;
+      float: left;
+      justify-content: center;
+      opacity: .55;
+      padding: 0;
+      position: relative;
+      text-align: center;
+
+      & > svg {
+        height: 18px;
+        width: 18px;
+        margin: 1px 2px 2px 1px;
+      }
+    }
+
+    &-bar {
+      display: flex;
+
+      &-input {
+        border: 0;
+        outline: 0;
+      }
+    }
+  }
+}

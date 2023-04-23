@@ -1,0 +1,32 @@
+@import "variables";
+
+@mixin button() {
+  border: 0;
+  background-color: transparent;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  & > svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  & > span {
+    border-style: solid;
+    border-width: 4px 4px 0 4px;
+    height: 0;
+    width: 0;
+    border-color: #444746 transparent;
+    margin-left: 8px;
+  }
+
+  &:hover {
+    background-color: $color_black6;
+  }
+
+  &:active {
+    background-color: $color_black12;
+  }
+}
