@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server",
-    "build": "cross-env NODE_ENV=production webpack-dev-server --mode production"
+    "build": "cross-env NODE_ENV=production webpack --mode production"
   },
   "browserslist": [
     "> 0.25%, not dead"
