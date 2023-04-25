@@ -23,14 +23,9 @@ module.exports = {
   resolve: {
     extensions: ['.js'],
     alias: {
-      'components/*': ['./src/components/*'],
-      'modules/*': ['./src/modules/*'],
-      'context/*': ['./src/context/*'],
-      'hooks/*': ['./src/hooks/*'],
-      'utils/*': ['./src/utils/*'],
-      'requests/*': ['./src/requests/*'],
-      'styles/*': ['./src/styles/*'],
-      '@/*': ['./*'],
+      components: path.resolve(__dirname, 'src', 'components'),
+      core: path.resolve(__dirname, 'src', 'core'),
+      styles: path.resolve(__dirname, 'src', 'styles'),
     },
   },
   devtool: isProd ? false : 'source-map',

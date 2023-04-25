@@ -1,12 +1,16 @@
 {
   "parser": "@babel/eslint-parser",
-  "extends": ["airbnb", "prettier"],
+  "extends": ["airbnb", "prettier", "plugin:import/recommended"],
   "plugins": ["prettier"],
   "env": {
     "browser": true,
     "node": true
   },
   "rules": {
-    "prettier/prettier": "error"
+    "prettier/prettier": "error",
+    "no-console": "off"
+  },
+  "settings": {
+    "import/resolver": "webpack"
   }
 }
