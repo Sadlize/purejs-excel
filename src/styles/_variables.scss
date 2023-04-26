@@ -1,11 +1,21 @@
-//$header-height: 38px;
-$formula_height: 29px;
-
 // Colors
 $color_white: rgb(255 255 255);
 $color_black: rgb(0 0 0);
 $color_black6: rgba(0,0,0,.06);
 $color_black12: rgba(0,0,0,.12);
-$color_blue: #1a73e8;
-$color_grey: #c0c0c0;
-$color_lightBlue: #f9fbfd;
+$color_blue: rgb(26 115 232);
+$color_grey: rgb(192 192 192);
+$color_lightBlue: rgb(249 251 253);
+
+// Container variables
+$header-container-height: 60px;
+$header-toolbar-height: 40px;
+$header-formula_height: 29px;
+
+// Table variables
+$excel-table-row_height: 24px;
+$excel-table-info-row_width: 46px;
+$excel-table-column_width: 100px;
+
+// Borders
+$border_color: $color_grey;

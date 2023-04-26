@@ -1,15 +1,21 @@
-import './styles/normalize.scss';
-import './styles/globals.scss';
+import 'styles/normalize.scss';
+import 'styles/globals.scss';
+import 'styles/header.scss';
+import './styles/table.scss';
 
-// Connect css
-import './styles/header.scss';
+import LayoutComponent from 'components';
+import Container from 'components/modules/header/Container';
+import Toolbar from 'components/modules/header/Toolbar';
+import Formula from 'components/modules/header/Formula';
+import Table from 'components/modules/table';
 
-function titleInputOnClickHandler() {
-  document
-    .getElementById('title-input')
-    .setSelectionRange(0, this.value.length);
-}
+const excelHeader = new LayoutComponent('#app', {
+  components: [Container, Toolbar, Formula],
+});
 
-document
-  .getElementById('title-input')
-  .addEventListener('click', titleInputOnClickHandler);
+const excelTable = new LayoutComponent('#app', {
+  components: [Table],
+});
+
+excelHeader.render('header', 'header');
+excelTable.render('main');

@@ -20,7 +20,7 @@
     outline: none;
 
     &:hover {
-      border: 1px solid $color_grey;
+      border: 1px solid $border_color;
     }
 
     &:focus {
@@ -42,6 +42,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 8px 8px 0 8px;
+    height: $header-container-height;
   }
 
   &__brand-logo {
@@ -91,7 +92,7 @@
     border: none;
     border-radius: 24px;
     margin: 6px 16px 8px 16px;
-    min-height: 40px;
+    height: $header-toolbar-height;
     padding: 0 8px;
     display: flex;
     align-items: center;
@@ -116,8 +117,7 @@
       height: 20px;
     }
 
-    & .color-menu-button-indicator > svg{
-      height: 16px;
+    & .color-menu-button-indicator > svg {
       border-bottom: 4px solid rgb(0, 0, 0);
     }
   }
@@ -126,7 +126,7 @@
     display: flex;
     align-items: center;
     background-color: $color_white;
-    height: $formula_height;
+    height: $header-formula_height;
 
     &-waffle {
       width: 60px;
@@ -141,8 +141,8 @@
 
     &-separator {
       border-left: 1px solid #c7c7c7;
-      margin: $formula_height * 0.21 3px;
-      height: $formula_height * 0.58;
+      margin: $header-formula_height * 0.21 3px;
+      height: $header-formula_height * 0.58;
     }
 
     &-label {
