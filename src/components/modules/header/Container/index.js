@@ -3,6 +3,12 @@ import ExcelComponent from 'core/ExcelComponent';
 export default class Container extends ExcelComponent {
   static className = 'header__container';
 
+  constructor($root) {
+    super($root, {
+      name: 'Container',
+    });
+  }
+
   render() {
     return `
       <a href="/" class="header__brand-logo">
