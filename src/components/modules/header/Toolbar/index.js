@@ -3,6 +3,12 @@ import ExcelComponent from 'core/ExcelComponent';
 export default class Toolbar extends ExcelComponent {
   static className = 'header__toolbar';
 
+  constructor($root) {
+    super($root, {
+      name: 'Toolbar',
+    });
+  }
+
   render() {
     return `
       <!--Undo-->

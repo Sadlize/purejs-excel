@@ -26,6 +26,7 @@ module.exports = {
       components: path.resolve(__dirname, 'src', 'components'),
       core: path.resolve(__dirname, 'src', 'core'),
       styles: path.resolve(__dirname, 'src', 'styles'),
+      utils: path.resolve(__dirname, 'src', 'utils'),
     },
   },
   devtool: isProd ? false : 'source-map',

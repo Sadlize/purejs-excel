@@ -10,11 +10,11 @@ import Formula from 'components/modules/header/Formula';
 import Table from 'components/modules/table';
 
 const excelHeader = new LayoutComponent('#app', {
-  components: [Container, Toolbar, Formula],
+  children: [Container, Toolbar, Formula],
 });
 
 const excelTable = new LayoutComponent('#app', {
-  components: [Table],
+  children: [Table],
 });
 
 excelHeader.render('header', 'header');
