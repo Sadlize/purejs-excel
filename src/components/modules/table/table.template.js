@@ -3,18 +3,36 @@ function toCell(content) {
 }
 
 function toCol(col) {
-  return `<div class="excel__column">${col}</div>`;
+  return `
+    <div class="excel__column" data-type="resizable">
+      <span>${col}</span>
+      <div class="col-resize" data-resize="col">
+        <div class="col-resize-handle-bar"></div>
+      </div>
+    </div>
+  `;
 }
 
 function createRow(content, index) {
   return `
-      <div class="excel__row">
-        <div class="excel__row-info">${index || ''}</div>
-        <div class="excel__row-data">
-            ${content}
-        </div>
+    <div class="excel__row" data-type="resizable">
+      <div class="excel__row-info">
+        ${
+          index
+            ? `
+              <span>${index}</span>
+              <div class="row-resize" data-resize="row">
+                <div class="row-resize-handle-bar"></div>
+              </div>
+              `
+            : ''
+        }
       </div>
-    `;
+      <div class="excel__row-data">
+        ${content}
+      </div>
+    </div>
+  `;
 }
 
 const CODES = {
@@ -38,7 +56,6 @@ export default function TableTemplate(rowsCount = 15) {
 
   for (let i = 0; i < rowsCount; i += 1) {
     rows.push(createRow(cells, i + 1));
-    console.log(i);
   }
 
   return rows.join('');

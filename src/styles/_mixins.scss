@@ -30,3 +30,68 @@
     background-color: $color_black12;
   }
 }
+
+@mixin excel-resizer($mode) {
+  display: flex;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+
+  &:hover {
+    &:before, &:after {
+      opacity: 1;
+    }
+  }
+
+  &:before, &:after {
+    content: '';
+    background: #444746;
+    opacity: 0;
+  }
+
+  &-handle-bar {
+    background-color: #c7c7c7;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  @if $mode == "col" {
+    top: 0;
+    cursor: col-resize;
+    transform: translateX(50%);
+    padding-left: 1px;
+
+    &:before, &:after {
+      width: 3px;
+      border-radius: 50%/10%;
+      margin: 4px 0;
+    }
+
+    &-handle-bar {
+      height: 100px;
+      width: 6px;
+    }
+  }
+
+  @if $mode == "row" {
+    flex-direction: column;
+    left: 0;
+    cursor: row-resize;
+    transform: translateY(50%);
+
+    &:before, &:after {
+      height: 3px;
+      border-radius: 10%/50%;
+      margin: 0 15px;
+    }
+
+    &-handle-bar {
+      height: 6px;
+      width: 100px;
+    }
+  }
+
+
+
+}

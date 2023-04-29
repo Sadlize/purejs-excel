@@ -1,21 +1,26 @@
 @import "variables";
+@import "mixins";
 
 .excel {
-  overflow-x: auto;
+  overflow: auto hidden;
 
   &__row {
     display: flex;
     height: $excel-table-row_height;
 
-
     &-info {
+      position: relative;
       display: flex;
       justify-content: center;
       align-items: center;
       min-width: $excel-table-info-row_width;
       height: 100%;
-      border: 1px solid $border_color;
-      background-color: #f8f9fa;
+      border-right: 1px solid $border_color;
+      border-bottom: 1px solid $border_color;
+
+      .row-resize {
+        @include excel-resizer("row");
+      }
     }
 
     &-data {
@@ -24,19 +29,25 @@
   }
 
   &__column {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     min-width: $excel-table-column_width;
-    border: 1px solid $border_color;
-    background-color: #f8f9fa;
+    border-right: 1px solid $border_color;
+    border-bottom: 1px solid $border_color;
+
+    .col-resize {
+      @include excel-resizer("col");
+    }
   }
 
   .cell {
     padding: 1px 2px;
     min-width: $excel-table-column_width;
     height: 100%;
-    border: 1px solid #e2e3e3;
+    border-right: 1px solid #e2e3e3;
+    border-bottom: 1px solid #e2e3e3;
     outline: none;
 
     &.selected {
