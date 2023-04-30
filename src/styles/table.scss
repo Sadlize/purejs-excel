@@ -3,6 +3,7 @@
 
 .excel {
   overflow: auto hidden;
+  user-select: none;
 
   &__row {
     display: flex;

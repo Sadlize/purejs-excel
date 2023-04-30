@@ -1,10 +1,10 @@
-function toCell(content) {
-  return `<div contenteditable class="cell">${content}</div>`;
+function toCell(content, index) {
+  return `<div contenteditable class="cell" data-col="${index}">${content}</div>`;
 }
 
-function toCol(col) {
+function toCol(col, index) {
   return `
-    <div class="excel__column" data-type="resizable">
+    <div class="excel__column" data-type="resizable" data-col="${index}">
       <span>${col}</span>
       <div class="col-resize" data-resize="col">
         <div class="col-resize-handle-bar"></div>

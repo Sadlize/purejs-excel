@@ -50,6 +50,28 @@ class DOM {
   getCoords() {
     return this.$el.getBoundingClientRect();
   }
+
+  findAll(selector) {
+    return this.$el.querySelectorAll(selector);
+  }
+
+  get data() {
+    return this.$el.dataset;
+  }
+
+  css(styles = {}) {
+    Object.entries(styles).forEach(([property, value]) => {
+      this.$el.style[property] = value;
+    });
+  }
+
+  setAttribute(qualifiedName, value = '') {
+    return this.$el.setAttribute(qualifiedName, value);
+  }
+
+  removeAttribute(qualifiedName) {
+    return this.$el.removeAttribute(qualifiedName);
+  }
 }
 
 export default function $(selector) {
