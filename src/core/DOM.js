@@ -51,6 +51,11 @@ class DOM {
     return this.$el.getBoundingClientRect();
   }
 
+  find(selector) {
+    // eslint-disable-next-line no-use-before-define
+    return $(this.$el.querySelector(selector));
+  }
+
   findAll(selector) {
     return this.$el.querySelectorAll(selector);
   }
@@ -63,6 +68,14 @@ class DOM {
     Object.entries(styles).forEach(([property, value]) => {
       this.$el.style[property] = value;
     });
+  }
+
+  addClass(className) {
+    this.$el.classList.add(className);
+  }
+
+  removeClass(className) {
+    this.$el.classList.remove(className);
   }
 
   setAttribute(qualifiedName, value = '') {

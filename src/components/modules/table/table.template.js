@@ -1,10 +1,15 @@
-function toCell(content, index) {
-  return `<div contenteditable class="cell" data-col="${index}">${content}</div>`;
+function toCell(row) {
+  return (col) =>
+    `<div
+      contenteditable
+      class="cell"
+      data-cell="${col}${row}"
+    ></div>`;
 }
 
-function toCol(col, index) {
+function toColumn(col) {
   return `
-    <div class="excel__column" data-type="resizable" data-col="${index}">
+    <div class="excel__column" data-type="resizable" data-col="${col}">
       <span>${col}</span>
       <div class="col-resize" data-resize="col">
         <div class="col-resize-handle-bar"></div>
@@ -46,15 +51,15 @@ function toChar(_, index) {
 
 export default function TableTemplate(rowsCount = 15) {
   const columnsCount = CODES.Z - CODES.A + 1;
-  const columnsArray = new Array(columnsCount).fill('');
+  const columnsArray = new Array(columnsCount).fill('').map(toChar);
 
   const rows = [];
-  const columns = columnsArray.map(toChar).map(toCol).join('');
-  const cells = columnsArray.map(toCell).join('');
+  const columns = columnsArray.map(toColumn).join('');
 
   rows.push(createRow(columns));
 
   for (let i = 0; i < rowsCount; i += 1) {
+    const cells = columnsArray.map(toCell(i + 1)).join('');
     rows.push(createRow(cells, i + 1));
   }
 

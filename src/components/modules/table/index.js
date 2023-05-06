@@ -1,7 +1,9 @@
 import ExcelComponent from 'core/ExcelComponent';
 import TableTemplate from 'components/modules/table/table.template';
 import resizeHandler from 'components/modules/table/table.resize';
-import shouldResize from 'components/modules/table/table.functions';
+import { isCell, shouldResize } from 'components/modules/table/table.functions';
+import TableCellsSelection from 'components/modules/table/TableCellsSelection';
+import $ from 'core/DOM';
 
 export default class Table extends ExcelComponent {
   static className = 'excel';
@@ -13,10 +15,22 @@ export default class Table extends ExcelComponent {
     });
   }
 
-  // eslint-disable-next-line class-methods-use-this
+  prepare() {
+    this.selection = new TableCellsSelection();
+  }
+
+  init() {
+    super.init();
+    const initCell = this.$root.find('[data-cell="A1"]');
+    this.selection.select(initCell);
+  }
+
   onMousedown(event) {
     if (shouldResize(event)) {
       resizeHandler(this.$root, event);
+    } else if (isCell(event)) {
+      const $target = $(event.target);
+      this.selection.select($target);
     }
   }
 
