@@ -5,6 +5,7 @@ import {
   isCell,
   shouldResize,
   matrix,
+  nextSelector,
 } from 'components/modules/table/table.functions';
 import TableCellsSelection from 'components/modules/table/TableCellsSelection';
 import $ from 'core/DOM';
@@ -15,7 +16,7 @@ export default class Table extends ExcelComponent {
   constructor($root) {
     super($root, {
       name: 'Table',
-      listeners: ['mousedown'],
+      listeners: ['mousedown', 'keydown'],
     });
   }
 
@@ -25,8 +26,12 @@ export default class Table extends ExcelComponent {
 
   init() {
     super.init();
-    const initCell = this.$root.find('[data-cell="A1"]');
+    const initCell = this.$root.find('[data-cell="0:0"]');
     this.selection.select(initCell);
+  }
+
+  render() {
+    return TableTemplate(50);
   }
 
   onMousedown(event) {
@@ -38,6 +43,7 @@ export default class Table extends ExcelComponent {
         const $groupCells = matrix($target, this.selection.current).map((e) =>
           this.$root.find(`[data-cell="${e}"]`),
         );
+        console.log('gc', $groupCells);
         this.selection.selectGroup($groupCells);
       } else {
         this.selection.select($target);
@@ -45,7 +51,25 @@ export default class Table extends ExcelComponent {
     }
   }
 
-  render() {
-    return TableTemplate(50);
+  // eslint-disable-next-line class-methods-use-this
+  onKeydown(event) {
+    const keys = [
+      'Enter',
+      'Tab',
+      'ArrowLeft',
+      'ArrowRight',
+      'ArrowDown',
+      'ArrowUp',
+    ];
+    const { code } = event;
+    if (keys.includes(code) && !event.shiftKey) {
+      event.preventDefault();
+      console.log(code);
+      const cellId = this.selection.current.cellId(true);
+      console.log(cellId);
+      const $next = this.$root.find(nextSelector(code, cellId));
+      this.selection.select($next);
+      console.log($next);
+    }
   }
 }

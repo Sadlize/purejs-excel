@@ -72,11 +72,15 @@ class DOM {
 
   cellId(parse) {
     if (parse) {
-      const row = parseInt(this.cellId().replace(/\D/g, ''), 10);
-      const col = this.cellId().replace(/[^a-z]/gi, '');
-      return { col, row };
+      const id = this.cellId().split(':');
+      return { col: +id[0], row: +id[1] };
     }
     return this.data.cell;
+  }
+
+  focus() {
+    this.$el.focus();
+    return this;
   }
 
   addClass(className) {

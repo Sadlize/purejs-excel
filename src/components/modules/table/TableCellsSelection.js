@@ -13,7 +13,7 @@ export default class TableCellsSelection {
 
   select($el) {
     this.clear();
-    $el.addClass(TableCellsSelection.className);
+    $el.focus().addClass(TableCellsSelection.className);
     this.group.push($el);
     this.current = $el;
   }

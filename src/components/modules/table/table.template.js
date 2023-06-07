@@ -1,8 +1,9 @@
 function toCell(row) {
-  return (col) =>
+  return (_, col) =>
     `<div
+      contenteditable
       class="cell"
-      data-cell="${col}${row}"
+      data-cell="${col}:${row}"
     ></div>`;
 }
 
@@ -58,7 +59,7 @@ export default function TableTemplate(rowsCount = 15) {
   rows.push(createRow(columns));
 
   for (let i = 0; i < rowsCount; i += 1) {
-    const cells = columnsArray.map(toCell(i + 1)).join('');
+    const cells = columnsArray.map(toCell(i)).join('');
     rows.push(createRow(cells, i + 1));
   }
 

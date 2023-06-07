@@ -17,8 +17,32 @@ export function matrix($target, $current) {
 
   const groupIds = [];
   cols.forEach((col) => {
-    rows.forEach((row) => groupIds.push(`${col + row}`));
+    rows.forEach((row) => groupIds.push(`${col}:${row}`));
   });
 
   return groupIds;
+}
+
+export function nextSelector(code, { col, row }) {
+  const MIN_VALUE = 0;
+  console.log(col);
+  switch (code) {
+    case 'Enter':
+    case 'ArrowDown':
+      row += 1;
+      break;
+    case 'Tab':
+    case 'ArrowRight':
+      col += 1;
+      break;
+    case 'ArrowLeft':
+      col = col - 1 < MIN_VALUE ? MIN_VALUE : col - 1;
+      break;
+    case 'ArrowUp':
+      row = row - 1 < MIN_VALUE ? MIN_VALUE : row - 1;
+      break;
+    default:
+      return new Error('Key is not from available keys list');
+  }
+  return `[data-cell="${col}:${row}"]`;
 }
