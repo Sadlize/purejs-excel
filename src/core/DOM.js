@@ -70,6 +70,15 @@ class DOM {
     });
   }
 
+  cellId(parse) {
+    if (parse) {
+      const row = parseInt(this.cellId().replace(/\D/g, ''), 10);
+      const col = this.cellId().replace(/[^a-z]/gi, '');
+      return { col, row };
+    }
+    return this.data.cell;
+  }
+
   addClass(className) {
     this.$el.classList.add(className);
   }

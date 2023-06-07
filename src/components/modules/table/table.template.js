@@ -1,7 +1,6 @@
 function toCell(row) {
   return (col) =>
     `<div
-      contenteditable
       class="cell"
       data-cell="${col}${row}"
     ></div>`;
@@ -40,7 +39,7 @@ function createRow(content, index) {
   `;
 }
 
-const CODES = {
+export const CODES = {
   A: 65,
   Z: 90,
 };

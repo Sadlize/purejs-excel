@@ -1,7 +1,11 @@
 import ExcelComponent from 'core/ExcelComponent';
 import TableTemplate from 'components/modules/table/table.template';
 import resizeHandler from 'components/modules/table/table.resize';
-import { isCell, shouldResize } from 'components/modules/table/table.functions';
+import {
+  isCell,
+  shouldResize,
+  matrix,
+} from 'components/modules/table/table.functions';
 import TableCellsSelection from 'components/modules/table/TableCellsSelection';
 import $ from 'core/DOM';
 
@@ -30,7 +34,14 @@ export default class Table extends ExcelComponent {
       resizeHandler(this.$root, event);
     } else if (isCell(event)) {
       const $target = $(event.target);
-      this.selection.select($target);
+      if (event.shiftKey) {
+        const $groupCells = matrix($target, this.selection.current).map((e) =>
+          this.$root.find(`[data-cell="${e}"]`),
+        );
+        this.selection.selectGroup($groupCells);
+      } else {
+        this.selection.select($target);
+      }
     }
   }
 
