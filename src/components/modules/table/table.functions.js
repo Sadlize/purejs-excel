@@ -25,7 +25,7 @@ export function matrix($target, $current) {
 
 export function nextSelector(code, { col, row }) {
   const MIN_VALUE = 0;
-  console.log(col);
+
   switch (code) {
     case 'Enter':
     case 'ArrowDown':
