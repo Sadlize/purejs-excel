@@ -51,7 +51,6 @@ export default class Table extends ExcelComponent {
     }
   }
 
-  // eslint-disable-next-line class-methods-use-this
   onKeydown(event) {
     const keys = [
       'Enter',
