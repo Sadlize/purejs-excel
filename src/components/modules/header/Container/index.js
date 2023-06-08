@@ -3,9 +3,10 @@ import ExcelComponent from 'core/ExcelComponent';
 export default class Container extends ExcelComponent {
   static className = 'header__container';
 
-  constructor($root) {
+  constructor($root, options) {
     super($root, {
       name: 'Container',
+      ...options,
     });
   }
 

@@ -15,6 +15,17 @@ class DOM {
     return this.$el.outerHTML.trim();
   }
 
+  text(text) {
+    if (typeof text === 'string') {
+      this.$el.value = text;
+      return this;
+    }
+    if (this.$el.tagName.toLowerCase() === 'input') {
+      return this.$el.value.trim();
+    }
+    return this.$el.textContent.trim();
+  }
+
   clear() {
     this.html('');
     return this;
@@ -73,7 +84,10 @@ class DOM {
   cellId(parse) {
     if (parse) {
       const id = this.cellId().split(':');
-      return { col: +id[0], row: +id[1] };
+      return {
+        col: +id[0],
+        row: +id[1],
+      };
     }
     return this.data.cell;
   }

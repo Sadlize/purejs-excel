@@ -13,10 +13,11 @@ import $ from 'core/DOM';
 export default class Table extends ExcelComponent {
   static className = 'excel';
 
-  constructor($root) {
+  constructor($root, options) {
     super($root, {
       name: 'Table',
-      listeners: ['mousedown', 'keydown'],
+      listeners: ['mousedown', 'keydown', 'input'],
+      ...options,
     });
   }
 
@@ -26,8 +27,16 @@ export default class Table extends ExcelComponent {
 
   init() {
     super.init();
-    const initCell = this.$root.find('[data-cell="0:0"]');
-    this.selection.select(initCell);
+    const $initCell = this.$root.find('[data-cell="0:0"]');
+    this.selectCell($initCell);
+
+    this.$sub('formula:input', (text) => {
+      this.selection.current.text(text);
+    });
+
+    this.$sub('formula:done', () => {
+      this.selection.current.focus();
+    });
   }
 
   render() {
@@ -65,7 +74,16 @@ export default class Table extends ExcelComponent {
       event.preventDefault();
       const cellId = this.selection.current.cellId(true);
       const $next = this.$root.find(nextSelector(code, cellId));
-      this.selection.select($next);
+      this.selectCell($next);
     }
+  }
+
+  onInput(event) {
+    this.$emit('table:input', $(event.target));
+  }
+
+  selectCell($cell) {
+    this.selection.select($cell);
+    this.$emit('table:select', $cell);
   }
 }
