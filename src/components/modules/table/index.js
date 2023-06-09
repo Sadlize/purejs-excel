@@ -9,6 +9,7 @@ import {
 } from 'components/modules/table/table.functions';
 import TableCellsSelection from 'components/modules/table/TableCellsSelection';
 import $ from 'core/DOM';
+import { actionTableResize, actionChangeText } from 'redux/actions';
 
 export default class Table extends ExcelComponent {
   static className = 'excel';
@@ -25,27 +26,46 @@ export default class Table extends ExcelComponent {
     this.selection = new TableCellsSelection();
   }
 
+  updateTextInStore(value) {
+    this.$dispatch(
+      actionChangeText({
+        id: this.selection.current.cellId(),
+        value,
+      }),
+    );
+  }
+
   init() {
     super.init();
     const $initCell = this.$root.find('[data-cell="0:0"]');
     this.selectCell($initCell);
 
-    this.$sub('formula:input', (text) => {
+    this.$emitSub('formula:input', (text) => {
       this.selection.current.text(text);
+      this.updateTextInStore(text);
     });
 
-    this.$sub('formula:done', () => {
+    this.$emitSub('formula:done', () => {
       this.selection.current.focus();
     });
   }
 
   render() {
-    return TableTemplate(50);
+    return TableTemplate(50, this.store.getState());
+  }
+
+  async resizeTable(event) {
+    try {
+      const data = await resizeHandler(this.$root, event);
+      this.$dispatch(actionTableResize(data));
+    } catch (e) {
+      console.warn('Resize error', e.message);
+    }
   }
 
   onMousedown(event) {
     if (shouldResize(event)) {
-      resizeHandler(this.$root, event);
+      this.resizeTable(event);
     } else if (isCell(event)) {
       const $target = $(event.target);
       if (event.shiftKey) {
@@ -55,7 +75,7 @@ export default class Table extends ExcelComponent {
 
         this.selection.selectGroup($groupCells);
       } else {
-        this.selection.select($target);
+        this.selectCell($target);
       }
     }
   }
@@ -79,7 +99,7 @@ export default class Table extends ExcelComponent {
   }
 
   onInput(event) {
-    this.$emit('table:input', $(event.target));
+    this.updateTextInStore($(event.target).text());
   }
 
   selectCell($cell) {

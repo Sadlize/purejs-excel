@@ -1,4 +1,4 @@
-import capitalizeFirstLetter from 'utils/helpers';
+import { capitalizeFirstLetter } from 'utils/helpers';
 
 export default class DomListener {
   constructor($root, listeners) {

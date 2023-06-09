@@ -16,14 +16,13 @@ class DOM {
   }
 
   text(text) {
+    const tag = this.$el.tagName.toLowerCase();
+    const property = tag === 'input' ? 'value' : 'textContent';
     if (typeof text === 'string') {
-      this.$el.value = text;
+      this.$el[property] = text;
       return this;
     }
-    if (this.$el.tagName.toLowerCase() === 'input') {
-      return this.$el.value.trim();
-    }
-    return this.$el.textContent.trim();
+    return this.$el[property].trim();
   }
 
   clear() {
