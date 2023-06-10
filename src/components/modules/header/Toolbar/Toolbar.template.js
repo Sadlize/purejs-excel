@@ -3,7 +3,7 @@ import * as Icons from 'components/modules/header/Toolbar/Toolbar.icons';
 function createElement(element) {
   switch (element.type) {
     case 'button':
-      return `<button>${element.icon}</button>`;
+      return `<button class="${element.className}">${element.icon}</button>`;
     case 'input':
       return `<input class="${element.className}" type="text" aria-label="${element.ariaLabel}" value="10" id="${element.id}"/>`;
     default:
@@ -125,6 +125,7 @@ function ToolbarTemplate() {
       {
         type: 'button',
         icon: Icons.TextColor,
+        className: 'color-menu-button-indicator',
         active: false,
         value: {},
       },
@@ -133,6 +134,7 @@ function ToolbarTemplate() {
       {
         type: 'button',
         icon: Icons.FillColor,
+        className: 'color-menu-button-indicator',
         active: false,
         value: {},
       },

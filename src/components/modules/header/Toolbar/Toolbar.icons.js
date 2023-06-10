@@ -65,13 +65,13 @@ export const Strikethrough = `
 `;
 
 export const TextColor = `
-  <svg xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 20 20" preserveAspectRatio="none">
+  <svg xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 20 16" preserveAspectRatio="none">
     <g xmlns="http://www.w3.org/2000/svg"><path d="m5.354 14 1.875-5 1.875-5h1.792l3.75 10h-1.729l-.896-2.562H8L7.083 14H5.354ZM8.5 10h3l-1.458-4.042h-.084L8.5 10Z" fill="#444746"/></g>
   </svg>
 `;
 
 export const FillColor = `
-  <svg xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 20 20" preserveAspectRatio="none">
+  <svg xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 20 16" preserveAspectRatio="none">
     <g xmlns="http://www.w3.org/2000/svg"><path d="M4.5 1.062 5.562 0l7.042 7.042q.417.416.406.979-.01.562-.406.958l-3.625 3.625q-.417.417-.979.417t-.979-.417L3.396 8.958Q3 8.562 2.979 8q-.021-.562.417-.979L6.938 3.5Zm3.5 3.5L4.562 8h.021-.021 6.876ZM15.25 14q-.729 0-1.24-.51-.51-.511-.51-1.24 0-.417.219-.885.219-.469.698-1.136.166-.229.385-.5t.448-.541q.208.27.427.531.219.26.406.51.334.479.625.979.292.5.292 1.042 0 .729-.51 1.24-.511.51-1.24.51Z" fill="#444746"/></g>
   </svg>
 `;
