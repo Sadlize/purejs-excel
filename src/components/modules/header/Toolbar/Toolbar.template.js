@@ -1,15 +1,24 @@
 import * as Icons from 'components/modules/header/Toolbar/Toolbar.icons';
 
 function createElement(element) {
+  const className = element.className ? `class="${element.className}"` : '';
   switch (element.type) {
     case 'button':
       return `
-        <button ${element.className ? `class="${element.className}"` : ''}>
+        <button ${className}>
           ${element.icon}
         </button>
       `;
     case 'input':
-      return `<input class="${element.className}" type="text" aria-label="${element.ariaLabel}" value="10" id="${element.id}"/>`;
+      return `
+        <input
+          ${className}
+          type="text"
+          aria-label="${element.ariaLabel}"
+          value="10"
+          id="${element.id}"
+        />
+      `;
     default:
       return console.error(new Error('The element is not provided type'));
   }
