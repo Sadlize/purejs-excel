@@ -3,7 +3,11 @@ import * as Icons from 'components/modules/header/Toolbar/Toolbar.icons';
 function createElement(element) {
   switch (element.type) {
     case 'button':
-      return `<button class="${element.className}">${element.icon}</button>`;
+      return `
+        <button ${element.className ? `class="${element.className}"` : ''}>
+          ${element.icon}
+        </button>
+      `;
     case 'input':
       return `<input class="${element.className}" type="text" aria-label="${element.ariaLabel}" value="10" id="${element.id}"/>`;
     default:
