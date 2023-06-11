@@ -45,25 +45,25 @@ export const isEqual = (a, b) => {
 
   return a === b;
 };
-//
-// const isDeepEqual = (object1, object2) => {
-//   const objKeys1 = Object.keys(object1);
-//   const objKeys2 = Object.keys(object2);
-//
-//   if (objKeys1.length !== objKeys2.length) return false;
-//
-//   for (const key of objKeys1) {
-//     const value1 = object1[key];
-//     const value2 = object2[key];
-//
-//     const isObjects = isObject(value1) && isObject(value2);
-//
-//     if (
-//       (isObjects && !isDeepEqual(value1, value2)) ||
-//       (!isObjects && value1 !== value2)
-//     ) {
-//       return false;
-//     }
-//   }
-//   return true;
-// };
+
+// [
+//   [
+//     {},
+//     {},
+//   ]
+// ]
+
+export const objectFind = (arr, key, value) => {
+  for (let i = 0; i < arr.length; i += 1) {
+    if (arr[i][key] === value) {
+      return arr[i];
+    }
+    if (typeof arr[i] === 'object' && arr[i] !== null) {
+      const result = objectFind(arr[i], key, value);
+      if (result) {
+        return result;
+      }
+    }
+  }
+  return null;
+};
