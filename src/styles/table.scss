@@ -14,10 +14,11 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      min-width: $excel-table-info-row_width;
-      height: 100%;
       border-right: 1px solid $border_color;
       border-bottom: 1px solid $border_color;
+      font-size: 12px;
+      min-width: $excel-table-info-row_width;
+      height: 100%;
 
       .row-resize {
         @include excel-resizer("row");
@@ -34,9 +35,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    min-width: $excel-table-column_width;
     border-right: 1px solid $border_color;
     border-bottom: 1px solid $border_color;
+    font-size: 12px;
+    min-width: $excel-table-column_width;
 
     .col-resize {
       @include excel-resizer("col");
@@ -44,19 +46,23 @@
   }
 
   .cell {
-    padding: 1px 2px;
+    padding: 1px 1px 0 2px;
     min-width: $excel-table-column_width;
     height: 100%;
     border-right: 1px solid #e2e3e3;
     border-bottom: 1px solid #e2e3e3;
     outline: none;
+    position: relative;
 
     &.selected {
-      border: 2px solid #0b57d0;
+      &:before {
+        @include excel-cell-selection("select");
+      }
 
       &:focus {
-        z-index: 2;
-        outline: 2px solid #a8c7fa;
+        &:after {
+          @include excel-cell-selection("focus");
+        }
       }
     }
   }

@@ -105,7 +105,21 @@
       width: 100vw;
     }
   }
+}
 
+@mixin excel-cell-selection($mode) {
+  content: '';
+  width: calc(100% + 2px);
+  height: calc(100% + 2px);
+  position: absolute;
+  top: -1px;
+  left: -1px;
 
-
+  @if $mode == "select" {
+    border: 2px solid #0b57d0;
+  }
+  @if $mode == "focus" {
+    outline: 2px solid #a8c7fa;
+    z-index: 2;
+  }
 }
