@@ -7,17 +7,18 @@ export function createElementHTML(element) {
   const toolbarElement = element.toolbarElement
     ? `data-toolbar-element="${element.toolbarElement}"`
     : '';
+  const disabled = element.disabled ? 'disabled' : '';
   switch (element.type) {
     case 'button':
       return `
-        <button class="${className}" ${toolbarElement}>
+        <button type="button" class="${className}" ${toolbarElement} ${disabled}>
           ${element.icon}
         </button>
       `;
     case 'input':
       return `
         <input
-          ${className}
+          class="${className}"
           ${toolbarElement}
           type="text"
           aria-label="${element.ariaLabel}"
@@ -38,98 +39,110 @@ function createToolbarHTML(sector, index) {
 }
 
 export const toolbarElements = (state = {}) => [
-  // [
-  //   {
-  //     toolbarElement: 'Undo',
-  //     type: 'button',
-  //     icon: Icons.Undo,
-  //     active: false,
-  //     value: {},
-  //   },
-  //   {
-  //     toolbarElement: 'Redo',
-  //     type: 'button',
-  //     icon: Icons.Redo,
-  //     active: false,
-  //     value: {},
-  //   },
-  //   {
-  //     toolbarElement: 'Print',
-  //     type: 'button',
-  //     icon: Icons.Print,
-  //     active: false,
-  //     value: {},
-  //   },
-  //   {
-  //     toolbarElement: 'Paint format',
-  //     type: 'button',
-  //     icon: Icons.PaintFormat,
-  //     active: false,
-  //     value: {},
-  //   },
-  // ],
-  // [
-  //   {
-  //     toolbarElement: 'Format as currency',
-  //     type: 'button',
-  //     icon: '$',
-  //     active: false,
-  //     value: {},
-  //   },
-  //   {
-  //     toolbarElement: 'Format as percent',
-  //     type: 'button',
-  //     icon: '%',
-  //     active: false,
-  //     value: {},
-  //   },
-  //   {
-  //     toolbarElement: 'Decrease decimals places',
-  //     type: 'button',
-  //     icon: Icons.DecreaseDecimalsPlaces,
-  //     active: false,
-  //     value: {},
-  //   },
-  //   {
-  //     toolbarElement: 'Increase decimals places',
-  //     type: 'button',
-  //     icon: Icons.IncreaseDecimalsPlaces,
-  //     active: false,
-  //     value: {},
-  //   },
-  //   {
-  //     toolbarElement: 'More formats',
-  //     type: 'button',
-  //     icon: '123',
-  //     active: false,
-  //     value: {},
-  //   },
-  // ],
-  // [
-  //   {
-  //     toolbarElement: 'Decrease font size',
-  //     type: 'button',
-  //     icon: Icons.DecreaseFontSize,
-  //     active: false,
-  //     value: {},
-  //   },
-  //   {
-  //     toolbarElement: 'Font size',
-  //     type: 'input',
-  //     className: 'header__input',
-  //     ariaLabel: 'Rename',
-  //     id: 'fontSize-input',
-  //     icon: Icons.DecreaseFontSize,
-  //     value: {},
-  //   },
-  //   {
-  //     toolbarElement: 'Increase font size',
-  //     type: 'button',
-  //     icon: Icons.IncreaseFontSize,
-  //     active: false,
-  //     value: {},
-  //   },
-  // ],
+  [
+    {
+      toolbarElement: 'Undo',
+      type: 'button',
+      icon: Icons.Undo,
+      active: false,
+      value: {},
+      disabled: true,
+    },
+    {
+      toolbarElement: 'Redo',
+      type: 'button',
+      icon: Icons.Redo,
+      active: false,
+      value: {},
+      disabled: true,
+    },
+    {
+      toolbarElement: 'Print',
+      type: 'button',
+      icon: Icons.Print,
+      active: false,
+      value: {},
+      disabled: true,
+    },
+    {
+      toolbarElement: 'Paint format',
+      type: 'button',
+      icon: Icons.PaintFormat,
+      active: false,
+      value: {},
+      disabled: true,
+    },
+  ],
+  [
+    {
+      toolbarElement: 'Format as currency',
+      type: 'button',
+      icon: '$',
+      active: false,
+      value: {},
+      disabled: true,
+    },
+    {
+      toolbarElement: 'Format as percent',
+      type: 'button',
+      icon: '%',
+      active: false,
+      value: {},
+      disabled: true,
+    },
+    {
+      toolbarElement: 'Decrease decimals places',
+      type: 'button',
+      icon: Icons.DecreaseDecimalsPlaces,
+      active: false,
+      value: {},
+      disabled: true,
+    },
+    {
+      toolbarElement: 'Increase decimals places',
+      type: 'button',
+      icon: Icons.IncreaseDecimalsPlaces,
+      active: false,
+      value: {},
+      disabled: true,
+    },
+    {
+      toolbarElement: 'More formats',
+      type: 'button',
+      icon: '123',
+      active: false,
+      value: {},
+      disabled: true,
+    },
+  ],
+  [
+    {
+      toolbarElement: 'Decrease font size',
+      type: 'button',
+      icon: Icons.DecreaseFontSize,
+      active: false,
+      value: {},
+      disabled: true,
+    },
+    {
+      toolbarElement: 'Font size',
+      type: 'input',
+      className: 'header__input',
+      ariaLabel: 'Rename',
+      id: 'fontSize-input',
+      icon: Icons.DecreaseFontSize,
+      value: {},
+      disabled: true,
+    },
+    {
+      toolbarElement: 'Increase font size',
+      type: 'button',
+      icon: Icons.IncreaseFontSize,
+      active: false,
+      value: {},
+      disabled: true,
+    },
+  ],
   [
     {
       toolbarElement: 'Bold',
@@ -168,97 +181,108 @@ export const toolbarElements = (state = {}) => [
       },
     },
   ],
-  // [
-  //   {
-  //     toolbarElement: 'Fill color',
-  //     type: 'button',
-  //     icon: Icons.FillColor,
-  //     className: 'color-menu-button-indicator',
-  //     active: false,
-  //     value: {},
-  //   },
-  //   {
-  //     toolbarElement: 'Borders',
-  //     type: 'button',
-  //     icon: Icons.Borders,
-  //     active: false,
-  //     value: {},
-  //   },
-  // ],
-  // [
-  //   {
-  //     toolbarElement: 'Horizontal align',
-  //     type: 'button',
-  //     icon: Icons.HorizontalAlign,
-  //     active: false,
-  //     value: {},
-  //   },
-  //   {
-  //     toolbarElement: 'Vertical align',
-  //     type: 'button',
-  //     icon: Icons.VerticalAlign,
-  //     active: false,
-  //     value: {},
-  //   },
-  //   {
-  //     toolbarElement: 'Text wrapping',
-  //     type: 'button',
-  //     icon: Icons.TextWrapping,
-  //     active: false,
-  //     value: {},
-  //   },
-  //   {
-  //     toolbarElement: 'Text rotation',
-  //     type: 'button',
-  //     icon: Icons.TextRotation,
-  //     active: false,
-  //     value: {},
-  //   },
-  // ],
-  // [
-  //   {
-  //     toolbarElement: 'Insert link',
-  //     type: 'button',
-  //     icon: Icons.InsertLink,
-  //     active: false,
-  //     value: {},
-  //   },
-  //   {
-  //     toolbarElement: 'Insert comment',
-  //     type: 'button',
-  //     icon: Icons.InsertComment,
-  //     active: false,
-  //     value: {},
-  //   },
-  //   {
-  //     toolbarElement: 'Insert chart',
-  //     type: 'button',
-  //     icon: Icons.InsertChart,
-  //     active: false,
-  //     value: {},
-  //   },
-  //   {
-  //     toolbarElement: 'Create a filter',
-  //     type: 'button',
-  //     icon: Icons.CreateFilter,
-  //     active: false,
-  //     value: {},
-  //   },
-  //   {
-  //     toolbarElement: 'Functions',
-  //     type: 'button',
-  //     icon: Icons.Functions,
-  //     active: false,
-  //     value: {},
-  //   },
-  //   // {
-  //   //   toolbarElement: 'More',
-  //   //   type: 'button',
-  //   //   icon: Icons.More,
-  //   //   active: false,
-  //   //   value: {},
-  //   // },
-  // ],
+  [
+    {
+      toolbarElement: 'Fill color',
+      type: 'button',
+      icon: Icons.FillColor,
+      className: 'color-menu-button-indicator',
+      active: false,
+      value: {},
+      disabled: true,
+    },
+    {
+      toolbarElement: 'Borders',
+      type: 'button',
+      icon: Icons.Borders,
+      active: false,
+      value: {},
+      disabled: true,
+    },
+  ],
+  [
+    {
+      toolbarElement: 'Horizontal align',
+      type: 'button',
+      icon: Icons.HorizontalAlign,
+      active: false,
+      value: {},
+      disabled: true,
+    },
+    {
+      toolbarElement: 'Vertical align',
+      type: 'button',
+      icon: Icons.VerticalAlign,
+      active: false,
+      value: {},
+      disabled: true,
+    },
+    {
+      toolbarElement: 'Text wrapping',
+      type: 'button',
+      icon: Icons.TextWrapping,
+      active: false,
+      value: {},
+      disabled: true,
+    },
+    {
+      toolbarElement: 'Text rotation',
+      type: 'button',
+      icon: Icons.TextRotation,
+      active: false,
+      value: {},
+      disabled: true,
+    },
+  ],
+  [
+    {
+      toolbarElement: 'Insert link',
+      type: 'button',
+      icon: Icons.InsertLink,
+      active: false,
+      value: {},
+      disabled: true,
+    },
+    {
+      toolbarElement: 'Insert comment',
+      type: 'button',
+      icon: Icons.InsertComment,
+      active: false,
+      value: {},
+      disabled: true,
+    },
+    {
+      toolbarElement: 'Insert chart',
+      type: 'button',
+      icon: Icons.InsertChart,
+      active: false,
+      value: {},
+      disabled: true,
+    },
+    {
+      toolbarElement: 'Create a filter',
+      type: 'button',
+      icon: Icons.CreateFilter,
+      active: false,
+      value: {},
+      disabled: true,
+    },
+    {
+      toolbarElement: 'Functions',
+      type: 'button',
+      icon: Icons.Functions,
+      active: false,
+      value: {},
+      disabled: true,
+    },
+    // {
+    //   toolbarElement: 'More',
+    //   type: 'button',
+    //   icon: Icons.More,
+    //   active: false,
+    //   value: {},
+    // },
+  ],
 ];
 
 function ToolbarTemplate(state) {
