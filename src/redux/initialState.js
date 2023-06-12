@@ -1,7 +1,8 @@
 import { storage } from 'utils/helpers';
-import { defaultStyles } from 'src/constants';
+import { defaultStyles, defaultSpreadsheetTitle } from 'src/constants';
 
 const defaultState = {
+  spreadsheetTitle: defaultSpreadsheetTitle,
   colState: {},
   rowState: {},
   dataState: {},

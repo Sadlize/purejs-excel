@@ -3,6 +3,7 @@ import {
   CHANGE_TEXT,
   CHANGE_STYLES,
   APPLY_STYLE,
+  CHANGE_TITLE,
 } from 'redux/types';
 
 const value = (state, key, action) => {
@@ -43,6 +44,11 @@ function rootReducer(state, action) {
         ...state,
         [key]: val,
         currentStyles: { ...state.currentStyles, ...action.data.value },
+      };
+    case CHANGE_TITLE:
+      return {
+        ...state,
+        spreadsheetTitle: action.data,
       };
     default:
       return state;

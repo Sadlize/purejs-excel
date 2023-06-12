@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/prefer-default-export
 export const defaultStyles = {
   textAlign: 'left',
   fontWeight: 'normal',
@@ -6,3 +5,5 @@ export const defaultStyles = {
   fontStyle: 'normal',
   color: 'black',
 };
+
+export const defaultSpreadsheetTitle = 'Untitled spreadsheet';

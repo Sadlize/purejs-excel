@@ -1,4 +1,7 @@
 import ExcelComponent from 'core/ExcelComponent';
+import $ from 'core/DOM';
+import { actionChangeTitle } from 'redux/actions';
+import { defaultSpreadsheetTitle } from 'src/constants';
 
 export default class Container extends ExcelComponent {
   static className = 'header__container';
@@ -6,11 +9,20 @@ export default class Container extends ExcelComponent {
   constructor($root, options) {
     super($root, {
       name: 'Container',
+      listeners: ['input'],
+      subscribe: ['spreadsheet_title'],
       ...options,
     });
   }
 
+  onInput(event) {
+    const $target = $(event.target);
+    this.$dispatch(actionChangeTitle($target.text()));
+  }
+
   render() {
+    const title =
+      this.store.getState().spreadsheetTitle || defaultSpreadsheetTitle;
     return `
       <a href="/" class="header__brand-logo">
         <svg xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 36 36" preserveAspectRatio="none">
@@ -21,7 +33,7 @@ export default class Container extends ExcelComponent {
         </svg>
       </a>
       <div class="header__titleBar">
-        <input class="header__input" type="text" aria-label="Rename" value="Untitled spreadsheet" id="title-input"/>
+        <input class="header__input" type="text" aria-label="Rename" value="${title}" id="title-input"/>
         <div class="header__menuBar">
           <button>File</button>
           <button>Edit</button>
