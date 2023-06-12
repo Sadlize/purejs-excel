@@ -19,39 +19,15 @@ export const storage = (key, data = null) => {
   return localStorage.setItem(key, JSON.stringify(data));
 };
 
-export const isObject = (item) =>
-  item && typeof item === 'object' && !Array.isArray(item);
+export const isObject = (item) => item && typeof item === 'object';
 
-export const isEqual = (a, b) => {
-  if (isObject(a) && isObject(b)) {
-    const objKeys1 = Object.keys(a);
-    const objKeys2 = Object.keys(b);
-
-    if (objKeys1.length !== objKeys2.length) return false;
-
-    objKeys1.forEach((key) => {
-      const value1 = a[key];
-      const value2 = b[key];
-      const isObjects = isObject(value1) && isObject(value2);
-
-      return !(
-        (isObjects && !isEqual(value1, value2)) ||
-        (!isObjects && value1 !== value2)
-      );
-    });
-
-    return true;
-  }
-
-  return a === b;
+export const isEqual = (x, y) => {
+  const ok = Object.keys;
+  return isObject(x) && isObject(y)
+    ? ok(x).length === ok(y).length &&
+        ok(x).every((key) => isEqual(x[key], y[key]))
+    : x === y;
 };
-
-// [
-//   [
-//     {},
-//     {},
-//   ]
-// ]
 
 export const objectFind = (arr, key, value) => {
   for (let i = 0; i < arr.length; i += 1) {
@@ -67,3 +43,19 @@ export const objectFind = (arr, key, value) => {
   }
   return null;
 };
+
+const elementHaveValue = (el) => el !== undefined && el !== null && el !== '';
+
+export const concatClasses = (...classes) =>
+  classes.filter((el) => elementHaveValue(el)).join(' ');
+
+export const concatInlineStyles = (...styles) =>
+  styles.filter((el) => elementHaveValue(el)).join(';');
+
+export const camelToDashCase = (str) =>
+  str.replace(/([A-Z])/g, (g) => `-${g[0].toLowerCase()}`);
+
+export const toInlineStyles = (styles = {}) =>
+  Object.keys(styles)
+    .map((key) => `${camelToDashCase(key)}: ${styles[key]}`)
+    .join(';');

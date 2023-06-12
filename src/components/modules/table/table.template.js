@@ -1,3 +1,6 @@
+import { concatInlineStyles, toInlineStyles } from 'utils/helpers';
+import { defaultStyles } from 'src/constants';
+
 export const CODES = {
   A: 65,
   Z: 90,
@@ -16,16 +19,25 @@ const withWidthFrom = (state) => (col, index) => ({
 });
 
 const toCell = (state, row) => (_, col) => {
-  const id = `${col}:${row}`;
+  const id = `${row}:${col}`;
   const value = state.dataState[id] || '';
   const width = getWidth(state.colState, col);
+  const styles = concatInlineStyles(
+    toInlineStyles({
+      ...defaultStyles,
+      ...state.stylesState[id],
+    }),
+    `width: ${width}px`,
+  );
   return `
     <div
       contenteditable
       class="cell"
       data-cell="${id}"
-      style="width: ${width}px"
-    >${value}</div>
+      style="${styles}"
+    >
+      ${value}
+    </div>
   `;
 };
 

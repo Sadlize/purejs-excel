@@ -18,9 +18,17 @@ export default class TableCellsSelection {
     this.current = $el;
   }
 
+  get selectedIds() {
+    return this.group.map(($el) => $el.cellId());
+  }
+
   selectGroup($group) {
     this.clear();
     this.group = $group;
     this.group.forEach(($el) => $el.addClass(TableCellsSelection.className));
+  }
+
+  applyStyle(style) {
+    this.group.forEach(($el) => $el.css(style));
   }
 }

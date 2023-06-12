@@ -31,7 +31,7 @@ export default function resizeHandler($root, event) {
           .findAll(
             `
           [data-col="${columnNumber}"],
-          [data-cell^="${columnNumber}"]
+          [data-cell$="${columnNumber}"]
           `,
           )
           .forEach((item) => {
@@ -44,7 +44,7 @@ export default function resizeHandler($root, event) {
       }
 
       resolve({
-        resizeValue,
+        value: resizeValue,
         id: $parent.data[resizerType],
         resizerType,
       });

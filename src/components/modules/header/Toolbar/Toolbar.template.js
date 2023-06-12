@@ -1,14 +1,16 @@
 import * as Icons from 'components/modules/header/Toolbar/Toolbar.icons';
+import { concatClasses } from 'utils/helpers';
 
 export function createElementHTML(element) {
-  const className = element.className ? `class="${element.className}"` : '';
+  const className =
+    concatClasses(element.className, element.active ? 'active' : '') || '';
   const toolbarElement = element.toolbarElement
     ? `data-toolbar-element="${element.toolbarElement}"`
     : '';
   switch (element.type) {
     case 'button':
       return `
-        <button ${className} ${toolbarElement}>
+        <button class="${className}" ${toolbarElement}>
           ${element.icon}
         </button>
       `;
@@ -134,30 +136,37 @@ export const toolbarElements = (state = {}) => [
       type: 'button',
       icon: Icons.Bold,
       active: state.fontWeight === 'bold',
-      value: { fontWeight: state.fontWeight === 'bold' ? 'normal' : 'bold' },
+      value: { fontWeight: state.fontWeight === 'bold' ? '' : 'bold' },
     },
-    // {
-    //   toolbarElement: 'Italic',
-    //   type: 'button',
-    //   icon: Icons.Italic,
-    //   active: false,
-    //   value: {},
-    // },
-    // {
-    //   toolbarElement: 'Strikethrough',
-    //   type: 'button',
-    //   icon: Icons.Strikethrough,
-    //   active: false,
-    //   value: {},
-    // },
-    // {
-    //   toolbarElement: 'Text color',
-    //   type: 'button',
-    //   icon: Icons.TextColor,
-    //   className: 'color-menu-button-indicator',
-    //   active: false,
-    //   value: {},
-    // },
+    {
+      toolbarElement: 'Italic',
+      type: 'button',
+      icon: Icons.Italic,
+      active: state.fontStyle === 'italic',
+      value: {
+        fontStyle: state.fontStyle === 'italic' ? '' : 'italic',
+      },
+    },
+    {
+      toolbarElement: 'Strikethrough',
+      type: 'button',
+      icon: Icons.Strikethrough,
+      active: state.textDecoration === 'line-through',
+      value: {
+        textDecoration:
+          state.textDecoration === 'line-through' ? '' : 'line-through',
+      },
+    },
+    {
+      toolbarElement: 'Text color',
+      type: 'button',
+      icon: Icons.TextColor,
+      className: 'color-menu-button-indicator',
+      active: state.color === 'red',
+      value: {
+        color: state.color === 'red' ? '' : 'red',
+      },
+    },
   ],
   // [
   //   {
@@ -252,8 +261,8 @@ export const toolbarElements = (state = {}) => [
   // ],
 ];
 
-function ToolbarTemplate() {
-  return toolbarElements().map(createToolbarHTML).join('');
+function ToolbarTemplate(state) {
+  return toolbarElements(state).map(createToolbarHTML).join('');
 }
 
 export default ToolbarTemplate;

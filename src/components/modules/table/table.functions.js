@@ -12,14 +12,13 @@ export function matrix($target, $current) {
   const target = $target.cellId(true);
   const current = $current.cellId(true);
 
-  const cols = cellRange(current.col, target.col);
   const rows = cellRange(current.row, target.row);
+  const cols = cellRange(current.col, target.col);
 
   const groupIds = [];
-  cols.forEach((col) => {
-    rows.forEach((row) => groupIds.push(`${col}:${row}`));
+  rows.forEach((row) => {
+    cols.forEach((col) => groupIds.push(`${row}:${col}`));
   });
-
   return groupIds;
 }
 
@@ -44,5 +43,5 @@ export function nextSelector(code, { col, row }) {
     default:
       return new Error('Key is not from available keys list');
   }
-  return `[data-cell="${col}:${row}"]`;
+  return `[data-cell="${row}:${col}"]`;
 }

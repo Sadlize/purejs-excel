@@ -9,7 +9,13 @@ import {
 } from 'components/modules/table/table.functions';
 import TableCellsSelection from 'components/modules/table/TableCellsSelection';
 import $ from 'core/DOM';
-import { actionTableResize, actionChangeText } from 'redux/actions';
+import {
+  actionTableResize,
+  actionChangeText,
+  actionChangeStyles,
+  actionApplyStyle,
+} from 'redux/actions';
+import { defaultStyles } from 'src/constants';
 
 export default class Table extends ExcelComponent {
   static className = 'excel';
@@ -47,6 +53,16 @@ export default class Table extends ExcelComponent {
 
     this.$emitSub('formula:done', () => {
       this.selection.current.focus();
+    });
+
+    this.$emitSub('toolbar:applyStyle', (value) => {
+      this.selection.applyStyle(value);
+      this.$dispatch(
+        actionApplyStyle({
+          value,
+          ids: this.selection.selectedIds,
+        }),
+      );
     });
   }
 
@@ -105,5 +121,7 @@ export default class Table extends ExcelComponent {
   selectCell($cell) {
     this.selection.select($cell);
     this.$emit('table:select', $cell);
+    const styles = $cell.getStyles(Object.keys(defaultStyles));
+    this.$dispatch(actionChangeStyles(styles));
   }
 }

@@ -80,12 +80,20 @@ class DOM {
     });
   }
 
+  getStyles(styles = []) {
+    const res = {};
+    styles.forEach((s) => {
+      res[s] = this.$el.style[s];
+    });
+    return res;
+  }
+
   cellId(parse) {
     if (parse) {
       const id = this.cellId().split(':');
       return {
-        col: +id[0],
-        row: +id[1],
+        row: +id[0],
+        col: +id[1],
       };
     }
     return this.data.cell;
