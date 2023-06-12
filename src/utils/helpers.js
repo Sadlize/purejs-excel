@@ -59,3 +59,15 @@ export const toInlineStyles = (styles = {}) =>
   Object.keys(styles)
     .map((key) => `${camelToDashCase(key)}: ${styles[key]}`)
     .join(';');
+
+export const debounce = (fn, wait) => {
+  let timeout;
+  return (...args) => {
+    const later = () => {
+      clearTimeout(timeout);
+      fn(...args);
+    };
+    clearTimeout(timeout);
+    timeout = setInterval(later, wait);
+  };
+};
