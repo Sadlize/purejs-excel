@@ -18,7 +18,7 @@ export default class Formula extends ExcelComponent {
 
     this.$formula = this.$root.find('#formula-input');
     this.$emitSub('table:select', ($cell) => {
-      this.$formula.text($cell.text());
+      this.$formula.text($cell.data.formula || '');
     });
   }
 
@@ -35,7 +35,7 @@ export default class Formula extends ExcelComponent {
     const { code } = event;
     if (keys.includes(code)) {
       event.preventDefault();
-      this.$emit('formula:done');
+      this.$emit('formula:done', $(event.target).text());
     }
   }
 

@@ -44,5 +44,8 @@
     "webpack-cli": "^5.0.1",
     "webpack-dev-server": "^4.13.3"
   },
-  "private": "true"
+  "private": "true",
+  "dependencies": {
+    "mathjs": "^11.8.0"
+  }
 }

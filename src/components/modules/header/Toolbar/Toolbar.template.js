@@ -1,9 +1,9 @@
 import * as Icons from 'components/modules/header/Toolbar/Toolbar.icons';
-import { concatClasses } from 'utils/helpers';
+import { concatStr } from 'utils/helpers';
 
 export function createElementHTML(element) {
   const className =
-    concatClasses(element.className, element.active ? 'active' : '') || '';
+    concatStr(' ', [element.className, element.active ? 'active' : '']) || '';
   const toolbarElement = element.toolbarElement
     ? `data-toolbar-element="${element.toolbarElement}"`
     : '';

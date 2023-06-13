@@ -16,6 +16,7 @@ import {
   actionApplyStyle,
 } from 'redux/actions';
 import { defaultStyles } from 'src/constants';
+import formulaParse from 'core/Parse';
 
 export default class Table extends ExcelComponent {
   static className = 'excel';
@@ -41,18 +42,24 @@ export default class Table extends ExcelComponent {
     );
   }
 
+  getNextCell(key) {
+    const cellId = this.selection.current.cellId(true);
+    return this.$root.find(nextSelector(key, cellId));
+  }
+
   init() {
     super.init();
     const $initCell = this.$root.find('[data-cell="0:0"]');
     this.selectCell($initCell);
 
-    this.$emitSub('formula:input', (text) => {
-      this.selection.current.text(text);
-      this.updateTextInStore(text);
+    this.$emitSub('formula:input', (value) => {
+      this.selection.current.attr('data-formula', value);
+      this.updateTextInStore(value);
     });
 
-    this.$emitSub('formula:done', () => {
-      this.selection.current.focus();
+    this.$emitSub('formula:done', (value) => {
+      this.selection.current.text(formulaParse(value));
+      this.selectCell(this.getNextCell('Enter'));
     });
 
     this.$emitSub('toolbar:applyStyle', (value) => {
@@ -108,8 +115,7 @@ export default class Table extends ExcelComponent {
     const { code } = event;
     if (keys.includes(code) && !event.shiftKey) {
       event.preventDefault();
-      const cellId = this.selection.current.cellId(true);
-      const $next = this.$root.find(nextSelector(code, cellId));
+      const $next = this.getNextCell(code);
       this.selectCell($next);
     }
   }

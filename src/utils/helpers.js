@@ -46,11 +46,12 @@ export const objectFind = (arr, key, value) => {
 
 const elementHaveValue = (el) => el !== undefined && el !== null && el !== '';
 
-export const concatClasses = (...classes) =>
-  classes.filter((el) => elementHaveValue(el)).join(' ');
-
-export const concatInlineStyles = (...styles) =>
-  styles.filter((el) => elementHaveValue(el)).join(';');
+export const concatStr = (separator, stringsArr) => {
+  if (Array.isArray(stringsArr)) {
+    return stringsArr.filter((el) => elementHaveValue(el)).join(separator);
+  }
+  return console.error('An array of strings has not been provided');
+};
 
 export const camelToDashCase = (str) =>
   str.replace(/([A-Z])/g, (g) => `-${g[0].toLowerCase()}`);

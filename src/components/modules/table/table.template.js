@@ -1,5 +1,6 @@
-import { concatInlineStyles, toInlineStyles } from 'utils/helpers';
+import { toInlineStyles, concatStr } from 'utils/helpers';
 import { defaultStyles } from 'src/constants';
+import parse from 'core/Parse';
 
 export const CODES = {
   A: 65,
@@ -22,21 +23,25 @@ const toCell = (state, row) => (_, col) => {
   const id = `${row}:${col}`;
   const value = state.dataState[id] || '';
   const width = getWidth(state.colState, col);
-  const styles = concatInlineStyles(
+  const styles = concatStr(';', [
     toInlineStyles({
       ...defaultStyles,
       ...state.stylesState[id],
     }),
     `width: ${width}px`,
-  );
+  ]);
+  const attr = concatStr(' ', [
+    value && `data-formula="${value}"`,
+    `style="${styles}"`,
+  ]);
   return `
     <div
       contenteditable
       class="cell"
       data-cell="${id}"
-      style="${styles}"
+      ${attr}
     >
-      ${value}
+      ${parse(value)}
     </div>
   `;
 };

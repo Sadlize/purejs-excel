@@ -18,7 +18,7 @@ class DOM {
   text(text) {
     const tag = this.$el.tagName.toLowerCase();
     const property = tag === 'input' ? 'value' : 'textContent';
-    if (typeof text === 'string') {
+    if (typeof text !== 'undefined') {
       this.$el[property] = text;
       return this;
     }
@@ -102,6 +102,15 @@ class DOM {
   focus() {
     this.$el.focus();
     return this;
+  }
+
+  attr(name, value) {
+    if (value) {
+      this.$el.setAttribute(name, value);
+      return this;
+    }
+
+    return this.$el.getAttribute(name);
   }
 
   addClass(className) {
