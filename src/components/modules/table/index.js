@@ -53,7 +53,8 @@ export default class Table extends ExcelComponent {
     this.selectCell($initCell);
 
     this.$emitSub('formula:input', (value) => {
-      this.selection.current.attr('data-formula', value);
+      this.selection.current.attr('data-formula', '');
+      this.selection.current.text(formulaParse(value));
       this.updateTextInStore(value);
     });
 
