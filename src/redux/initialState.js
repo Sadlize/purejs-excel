@@ -1,4 +1,5 @@
 import { defaultStyles, defaultSpreadsheetTitle } from 'src/constants';
+import { dateFormatter } from 'utils/helpers';
 
 const defaultState = {
   spreadsheetTitle: defaultSpreadsheetTitle,
@@ -8,6 +9,7 @@ const defaultState = {
   stylesState: {},
   currentText: '',
   currentStyles: defaultStyles,
+  lastOpenDate: dateFormatter(new Date()),
 };
 
 const normalize = (state) => ({

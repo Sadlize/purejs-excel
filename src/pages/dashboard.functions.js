@@ -9,10 +9,14 @@ const toHTML = (key) => {
     <li class="dashboard__record">
       <div class="dashboard__record_title">
         <div class="dashboard__record_title_logo">${SpreadsheetLogo}</div>
-        <a class="dashboard__record_title_value" href="#${excel}/${id}">${record.spreadsheetTitle}</a>
+        <a class="dashboard__record_title_value" href="#${excel}/${id}">
+          ${record.spreadsheetTitle}
+        </a>
       </div>
       <span class="dashboard__record_owner">Me</span>
-      <span class="dashboard__record_time">12.06.2020</span>
+      <span class="dashboard__record_time">
+        ${record.lastOpenDate}
+      </span>
       <div class="dashboard__record_buttons">
         <button role="button">${More}</button>
       </div>

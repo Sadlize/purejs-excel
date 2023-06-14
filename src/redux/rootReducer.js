@@ -4,7 +4,9 @@ import {
   CHANGE_STYLES,
   APPLY_STYLE,
   CHANGE_TITLE,
+  UPDATE_DATE,
 } from 'redux/types';
+import { dateFormatter } from 'utils/helpers';
 
 const value = (state, key, action) => {
   const val = state[key] || {};
@@ -49,6 +51,11 @@ function rootReducer(state, action) {
       return {
         ...state,
         spreadsheetTitle: action.data,
+      };
+    case UPDATE_DATE:
+      return {
+        ...state,
+        lastOpenDate: dateFormatter(new Date()),
       };
     default:
       return state;

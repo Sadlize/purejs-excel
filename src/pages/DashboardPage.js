@@ -62,7 +62,7 @@ class DashboardPage extends Page {
       </div>
       <div class="dashboard__table dashboard__view">
         <div class="dashboard__list-header">
-          <span class="dashboard__list-header_title">Название</span>
+          <span class="dashboard__list-header_title">Recent spreadsheets</span>
           <span class="dashboard__list-header_owner">Owned by anyone</span>
           <span class="dashboard__list-header_time">Last opened by me</span>
           <div class="dashboard__list-header_buttons">

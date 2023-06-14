@@ -1,6 +1,7 @@
 import $ from 'core/DOM';
 import emitter from 'core/Emitter';
 import StoreSubscriber from 'core/StoreSubscriber';
+import { actionUpdateDate } from 'redux/actions';
 
 export default class LayoutComponent {
   constructor(options) {
@@ -30,6 +31,7 @@ export default class LayoutComponent {
   }
 
   init() {
+    this.store.dispatch(actionUpdateDate());
     this.subscriber.subscribeComponents(this.children);
     this.children.forEach((component) => component.init());
   }
