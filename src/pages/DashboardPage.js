@@ -3,11 +3,13 @@ import $ from 'core/DOM';
 import {
   More,
   BrandLogo,
-  SpreadsheetLogo,
   DashboardGridView,
   DashboardSort,
   DashboardFilePicker,
 } from 'src/icons';
+import createRecordsTable from 'pages/dashboard.functions';
+import { v4 as uuidv4 } from 'uuid';
+import { excel } from 'src/constants';
 
 class DashboardPage extends Page {
   // eslint-disable-next-line class-methods-use-this
@@ -51,7 +53,7 @@ class DashboardPage extends Page {
               </button>
           </div>
           <div class="dashboard__template">
-            <a class="dashboard__template-create">
+            <a class="dashboard__template-create" href="#${excel}/${uuidv4()}">
               <img src="https://ssl.gstatic.com/docs/templates/thumbnails/sheets-blank-googlecolors.png" alt="">
             </a>
             <div title="Blank" class="dashboard__template-title">Blank</div>
@@ -70,28 +72,7 @@ class DashboardPage extends Page {
           </div>
         </div>
         <ul class="dashboard__list">
-          <li class="dashboard__record">
-            <div class="dashboard__record_title">
-              <div class="dashboard__record_title_logo">${SpreadsheetLogo}</div>
-              <a class="dashboard__record_title_value" href="#">Таблица номер 1</a>
-            </div>
-            <span class="dashboard__record_owner">Me</span>
-            <span class="dashboard__record_time">12.06.2020</span>
-            <div class="dashboard__record_buttons">
-              <button role="button">${More}</button>
-            </div>
-          </li>
-          <li class="dashboard__record">
-            <div class="dashboard__record_title">
-              <div class="dashboard__record_title_logo">${SpreadsheetLogo}</div>
-              <a class="dashboard__record_title_value" href="#">Таблица номер 2</a>
-            </div>
-            <span class="dashboard__record_owner">Me</span>
-            <span class="dashboard__record_time">12.06.2020</span>
-            <div class="dashboard__record_buttons">
-              <button role="button">${More}</button>
-            </div>
-          </li>
+          ${createRecordsTable()}
         </ul>
       </div>
     `);

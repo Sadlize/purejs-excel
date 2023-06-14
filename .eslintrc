@@ -7,6 +7,7 @@
     "node": true
   },
   "rules": {
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
     "prettier/prettier": "error",
     "no-param-reassign": "off",
     "no-console": "off"

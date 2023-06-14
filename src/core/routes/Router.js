@@ -1,5 +1,6 @@
 import $ from 'core/DOM';
 import ActiveRoute from 'core/routes/ActiveRoute';
+import { excel } from 'src/constants';
 
 class Router {
   constructor(selector, routes) {
@@ -22,7 +23,7 @@ class Router {
       this.page.destroy();
     }
     this.$placeholder.clear();
-    const Page = ActiveRoute.path.includes('excel')
+    const Page = ActiveRoute.path.includes(excel)
       ? this.routes.excel
       : this.routes.dashboard;
     this.page = new Page(ActiveRoute.param);

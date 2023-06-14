@@ -1,4 +1,5 @@
 export const app = '#app';
+export const excel = 'excel';
 
 export const defaultStyles = {
   textAlign: 'left',

@@ -1,4 +1,3 @@
-import { storage } from 'utils/helpers';
 import { defaultStyles, defaultSpreadsheetTitle } from 'src/constants';
 
 const defaultState = {
@@ -17,8 +16,9 @@ const normalize = (state) => ({
   currentText: '',
 });
 
-const initialState = storage('excel-state')
-  ? normalize(storage('excel-state'))
-  : defaultState;
+const clone = (obj) => JSON.parse(JSON.stringify(obj));
 
-export default initialState;
+const normalizeInitialState = (state) =>
+  state ? normalize(state) : clone(defaultState);
+
+export default normalizeInitialState;
