@@ -53,8 +53,7 @@ export default class Table extends ExcelComponent {
     this.selectCell($initCell);
 
     this.$emitSub('formula:input', (value) => {
-      this.selection.current.attr('data-formula', '');
-      this.selection.current.text(formulaParse(value));
+      this.selection.current.attr('data-formula', '').text(formulaParse(value));
       this.updateTextInStore(value);
     });
 
@@ -116,6 +115,8 @@ export default class Table extends ExcelComponent {
     const { code } = event;
     if (keys.includes(code) && !event.shiftKey) {
       event.preventDefault();
+      const $current = this.selection.current;
+      $current.text(formulaParse($current.text()));
       const $next = this.getNextCell(code);
       this.selectCell($next);
     }
