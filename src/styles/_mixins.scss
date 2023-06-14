@@ -1,6 +1,6 @@
 @import "variables";
 
-@mixin button() {
+@mixin button($type: "default") {
   border: 0;
   background-color: transparent;
   position: relative;
@@ -8,6 +8,13 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  height: fit-content;
+
+  @if($type == 'round') {
+    padding: 8px;
+    border-radius: 50%;
+    line-height: 0;
+  }
 
   & > svg {
     width: 24px;

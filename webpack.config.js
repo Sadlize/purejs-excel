@@ -23,12 +23,13 @@ module.exports = {
   resolve: {
     extensions: ['.js'],
     alias: {
-      src: path.resolve(__dirname, 'src'),
       components: path.resolve(__dirname, 'src', 'components'),
       core: path.resolve(__dirname, 'src', 'core'),
+      pages: path.resolve(__dirname, 'src', 'pages'),
+      redux: path.resolve(__dirname, 'src', 'redux'),
+      src: path.resolve(__dirname, 'src'),
       styles: path.resolve(__dirname, 'src', 'styles'),
       utils: path.resolve(__dirname, 'src', 'utils'),
-      redux: path.resolve(__dirname, 'src', 'redux'),
     },
   },
   devtool: isProd ? false : 'source-map',

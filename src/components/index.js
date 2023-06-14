@@ -3,8 +3,7 @@ import emitter from 'core/Emitter';
 import StoreSubscriber from 'core/StoreSubscriber';
 
 export default class LayoutComponent {
-  constructor(selector, options) {
-    this.$parent = $(selector);
+  constructor(options) {
     this.children = options.children || [];
     this.store = options.store;
     this.emitter = emitter;
@@ -30,9 +29,7 @@ export default class LayoutComponent {
     return $root;
   }
 
-  render(tagName, classes) {
-    this.$parent.append(this.getRoot(tagName, classes));
-
+  init() {
     this.subscriber.subscribeComponents(this.children);
     this.children.forEach((component) => component.init());
   }

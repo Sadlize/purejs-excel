@@ -60,10 +60,7 @@
 
     &-buttons {
       & > button {
-        @include button();
-        padding: 8px;
-        border-radius: 50%;
-        line-height: 0;
+        @include button("round");
       }
 
       & > #meet-in-editors {

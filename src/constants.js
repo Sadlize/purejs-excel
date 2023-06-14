@@ -1,3 +1,5 @@
+export const app = '#app';
+
 export const defaultStyles = {
   textAlign: 'left',
   fontWeight: 'normal',
