@@ -12,7 +12,7 @@ const DEFAULT_HEIGHT = 24;
 
 const toChar = (_, index) => String.fromCharCode(CODES.A + index);
 const getHeight = (state, index) => state[index] || DEFAULT_HEIGHT;
-const getWidth = (state, index) => state?.[index] || DEFAULT_WIDTH;
+const getWidth = (state, index) => state[index] || DEFAULT_WIDTH;
 const withWidthFrom = (state) => (col, index) => ({
   col,
   colId: index,
